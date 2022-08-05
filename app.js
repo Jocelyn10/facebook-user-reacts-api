@@ -35,7 +35,10 @@ app.get('/', async ({ query }, res) => {
     });
   }
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
   let response = [];
 
   const page = await browser.newPage();
@@ -96,7 +99,7 @@ app.get('/', async ({ query }, res) => {
 });
 
 app.get('/test', (req, res) => {
-    res.status(200).send("Success !");
-})
+  res.status(200).send('Success !');
+});
 
 module.exports = app;
