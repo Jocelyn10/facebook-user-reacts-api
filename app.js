@@ -96,7 +96,7 @@ app.get('/', async ({ query }, res) => {
 });
 
 app.get('/test', (req, res) => {
-    res.status(200).send(response);
+    res.status(200).send("Success !");
 })
 
 module.exports = app;
