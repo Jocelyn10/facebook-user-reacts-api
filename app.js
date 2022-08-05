@@ -95,7 +95,7 @@ app.get('/', async ({ query }, res) => {
   return res.status(200).send(response);
 });
 
-app.get('/test', () => {
+app.get('/test', (req, res) => {
     res.status(200).send(response);
 })
 
