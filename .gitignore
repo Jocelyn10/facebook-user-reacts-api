@@ -51,6 +51,7 @@ $RECYCLE.BIN/
 *.msp
 
 .env
+node_modules/
 
 # Windows shortcuts
 *.lnk

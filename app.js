@@ -25,10 +25,13 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get('/hello', (req, res) => {
+app.get('/', (req, res) => {
+
     console.log("Hello !");
   res.set('Content-Type', 'text/html');
   res.status(200).send('<h1>Hello GFG Learner!</h1>');
+
+  
 });
 
 module.exports = app;
