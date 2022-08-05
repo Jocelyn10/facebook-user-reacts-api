@@ -90,10 +90,13 @@ app.get('/', async ({ query }, res) => {
   }
   console.log('                ---🤖---                     ');
 
-  await browser.close();
+  // await browser.close();
 
-  res.set('Content-Type', 'text/html');
-  res.status(200).send(response);
+  return res.status(200).send(response);
 });
+
+app.get('/test', () => {
+    res.status(200).send(response);
+})
 
 module.exports = app;
