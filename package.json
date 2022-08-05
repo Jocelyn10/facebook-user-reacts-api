@@ -1,0 +1,13 @@
+{
+  "name": "facebook-user-reacts-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "heroku-postbuild": "npm install pm2"
+  },
+  "author": "Jocelyn Nsa",
+  "license": "ISC"
+}
