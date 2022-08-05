@@ -9,5 +9,13 @@
     "heroku-postbuild": "npm install pm2"
   },
   "author": "Jocelyn Nsa",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1"
+  }
 }

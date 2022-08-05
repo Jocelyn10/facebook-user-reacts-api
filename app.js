@@ -1,12 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
-import cors from 'cors';
+const cors = require('cors');
 
 const app = express();
-
-// Routes
-const athleteRoutes = require('./routes/athlete');
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,9 +22,13 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-); 
+);
 app.use(bodyParser.json());
 
-app.use('/api/athlete', athleteRoutes);
+app.get('/hello', (req, res) => {
+    console.log("Hello !");
+  res.set('Content-Type', 'text/html');
+  res.status(200).send('<h1>Hello GFG Learner!</h1>');
+});
 
 module.exports = app;
