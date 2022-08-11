@@ -35,67 +35,73 @@ app.get('/', async ({ query }, res) => {
     });
   }
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
-  let response = [];
-
-  const page = await browser.newPage();
-  await page.goto('https://www.facebook.com/', { timeout: 0 });
-  console.log('🤖🤖🤖🤖🤖 WAITING FOR LOGIN INPUTS 🤖🤖🤖🤖🤖🤖');
-  await page.waitForSelector('input[name="email"]');
-
-  await page.type('input[name="email"]', FACEBOOK_EMAIL);
-  await page.type('input[name="pass"]', FACEBOOK_PASSWORD);
-  await page.keyboard.press('Enter');
-
-  console.log('🤖🤖🤖🤖🤖 LOGING 🤖🤖🤖🤖🤖🤖');
-
-  await page.waitForNavigation({ waitUntil: 'networkidle2' });
-
-  console.log('🤖🤖🤖🤖🤖 GOING TO THE POST 🤖🤖🤖🤖🤖🤖');
-
-  await page.goto(query.url, { waitUntil: 'networkidle2', timeout: 0 });
-
-  console.log('🤖🤖🤖🤖🤖 CLICK ON LIKE BTN 🤖🤖🤖🤖🤖🤖');
-
-  await page.waitForSelector('img[role="presentation"]');
-  await page.click('img[role="presentation"]');
-
-  page.waitForNavigation({ waitUntil: 'networkidle0' });
-
-  await page.waitForSelector('div[aria-label="Fermer"]');
-
-  await delay(7000);
-
-  console.log('🤖🤖🤖🤖🤖 GETING DATA FROM MODAL 🤖🤖🤖🤖🤖');
-
-  const links = await page.$$eval('div[role="dialog"]', (divs) =>
-    divs.map((div) => {
-      return {
-        html: div.innerHTML,
-      };
-    })
-  );
-
-  const modal = links[1];
-
-  var patt = /<a[^>]*label=["']([^"']*)["']/g;
-
-  console.log('🤖🤖🤖🤖🤖 PERSONS WHO LIKE THE POST 🤖🤖🤖🤖🤖🤖');
-  console.log('                                             ');
-  console.log('                                             ');
-  console.log('                ---🤖---                     ');
-  while ((match = patt.exec(modal.html))) {
-    console.log(match[1]);
-    response.push(match[1]);
-  }
-  console.log('                ---🤖---                     ');
-
-  // await browser.close();
-
-  return res.status(200).send(response);
+  
+    const browser = await puppeteer.launch({
+      headless: true,
+      ignoreDefaultArgs: ['--disable-extensions'],
+      args: ['--disable-features=AudioServiceOutOfProcess', '--no-sandbox','--use-gl=egl', '--disable-setuid-sandbox'],
+    });
+    let response = [];
+  
+    const page = await browser.newPage();
+    await page.goto('https://www.facebook.com/', { timeout: 0 });
+    console.log('🤖🤖🤖🤖🤖 WAITING FOR LOGIN INPUTS 🤖🤖🤖🤖🤖🤖');
+    await page.waitForSelector('input[name="email"]');
+  
+    await page.type('input[name="email"]', "jnsa@axialys.com");
+    await delay(2000);
+    await page.type('input[name="pass"]', "jnY2Th!#jCP@JT@");
+    await delay(3000);
+    await page.keyboard.press('Enter');
+  
+    console.log('🤖🤖🤖🤖🤖 LOGING 🤖🤖🤖🤖🤖🤖');
+  
+    await page.waitForNavigation({ waitUntil: 'networkidle2' });
+  
+    console.log('🤖🤖🤖🤖🤖 GOING TO THE POST 🤖🤖🤖🤖🤖🤖');
+  
+    await page.goto(query.url, { waitUntil: 'networkidle2', timeout: 0 });
+  
+    console.log('🤖🤖🤖🤖🤖 CLICK ON LIKE BTN 🤖🤖🤖🤖🤖🤖');
+  
+    await page.waitForSelector('img[role="presentation"]');
+    await page.click('img[role="presentation"]');
+  
+    page.waitForNavigation({ waitUntil: 'networkidle0' });
+  
+    await page.waitForSelector('div[aria-label="Fermer"]');
+  
+    await delay(7000);
+  
+    console.log('🤖🤖🤖🤖🤖 GETING DATA FROM MODAL 🤖🤖🤖🤖🤖');
+  
+    const links = await page.$$eval('div[role="dialog"]', (divs) =>
+      divs.map((div) => {
+        console.log("div : ", div)
+        return {
+          html: div.innerHTML,
+        };
+      })
+    );
+  
+    const modal = links[0];
+  
+    var patt = /<a[^>]*label=["']([^"']*)["']/g;
+  
+    console.log('🤖🤖🤖🤖🤖 PERSONS WHO LIKE THE POST 🤖🤖🤖🤖🤖🤖');
+    console.log('                                             ');
+    console.log('                                             ');
+    console.log('                ---🤖---                     ');
+    while ((match = patt.exec(modal.html))) {
+      console.log((match[0]).replace("<a aria-label=",""));
+      response.push((match[0]).replace("<a aria-label=",""));
+    }
+    console.log('                ---🤖---                     ');
+  
+    await browser.close();
+  
+    return res.status(200).send(response);
+  
 });
 
 app.get('/test', (req, res) => {

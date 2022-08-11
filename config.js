@@ -1,4 +1,5 @@
-const FACEBOOK_EMAIL = 'jo12.blog@gmail.com';
-const FACEBOOK_PASSWORD = 'ghfg2@4654GH';
+// Replace xxxxxxxxxx by your email and yout facebook password
+const FACEBOOK_EMAIL = 'xxxxxxxxxxxx';
+const FACEBOOK_PASSWORD = 'xxxxxxxxxxxxx';
 
 module.exports = { FACEBOOK_EMAIL, FACEBOOK_PASSWORD };
