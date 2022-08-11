@@ -48,9 +48,9 @@ app.get('/', async ({ query }, res) => {
     console.log('🤖🤖🤖🤖🤖 WAITING FOR LOGIN INPUTS 🤖🤖🤖🤖🤖🤖');
     await page.waitForSelector('input[name="email"]');
   
-    await page.type('input[name="email"]', "jnsa@axialys.com");
+    await page.type('input[name="email"]', FACEBOOK_EMAIL);
     await delay(2000);
-    await page.type('input[name="pass"]', "jnY2Th!#jCP@JT@");
+    await page.type('input[name="pass"]', FACEBOOK_PASSWORD);
     await delay(3000);
     await page.keyboard.press('Enter');
   
