@@ -1,4 +1,4 @@
-// Replace xxxxxxxxxx by your email and yout facebook password
+// Replace xxxxxxxxxx by your facebook email and password
 const FACEBOOK_EMAIL = 'xxxxxxxxxxxx';
 const FACEBOOK_PASSWORD = 'xxxxxxxxxxxxx';
 

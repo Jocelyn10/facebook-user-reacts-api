@@ -53,6 +53,7 @@ $RECYCLE.BIN/
 # Env files and node modules
 .env
 node_modules/
+package-lock.json
 
 # Windows shortcuts
 *.lnk

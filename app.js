@@ -28,6 +28,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// Main endpoint where our import script is running
 app.get('/', async ({ query }, res) => {
   function delay(time) {
     return new Promise(function (resolve) {
